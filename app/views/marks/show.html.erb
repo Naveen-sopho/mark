@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+<%= render 'layouts/nav' %><br><br>
+<div class="container">
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4">
+<div class="panel panel-primary", align="center">
+<div class="panel-heading">Marks</div>
+<div class="panel-body">
+
+<p>
+<strong>Student:</strong>
+<%= @mark.student.name %>
+</p>
+
+<p>
+<strong>Marks:</strong>
+<%= @mark.marks %>
+</p>
+
+<p>
+<strong>Subject:</strong>
+<%= @mark.teacher.subject %>
+</p>
+
+<%= link_to 'Edit', edit_mark_path(@mark) %>|
+<%= link_to 'Back', marks_path %>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+

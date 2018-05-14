@@ -1,0 +1,92 @@
+<% if current_teacher.present? %>
+
+
+<%= link_to 'Log Out',destroy_teacher_session_path,method: :delete , class: "btn btn-danger"%>
+<%if false %> render 'layouts/nav'<%end %>
+<div class="container">
+<h2>Welcome <%= current_teacher.name %></h2>
+<h5>Subject: <%= current_teacher.subject %></h5><br>
+<div class="col-md-1"></div>
+<div class="col-md-10">
+<center><h1>Marks Sheet</h1></center><br>
+
+<table class="table table-hover">
+<thead>
+<tr>
+<th>Student</th>
+<th>Marks</th>
+<th colspan="3"></th>
+</tr>
+</thead>
+
+<tbody>
+<% @marks.each do |mark| %>
+<tr>
+<td><%= mark.student.name %></td>
+<td><%= mark.marks %></td>
+<td><%= link_to 'Show', mark %></td>
+<td><%= link_to 'Edit', edit_mark_path(mark) %></td>
+<td><%= link_to '', mark, method: :delete, class: "glyphicon glyphicon-trash", data: { confirm: 'Are you sure?' } %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+
+<br>
+<%= link_to 'Add Mark', new_mark_path , class: "btn btn-primary" %>
+</div>
+</div>
+
+
+
+
+
+
+<% elsif current_student.present? %>
+
+
+<%= link_to 'Log Out',destroy_student_session_path,method: :delete , class: "btn btn-danger"%>
+<%if false %> render 'layouts/nav'<%end %>
+<div class="container">
+<h2>Welcome <%= current_student.name %> </h2>
+<div class="col-md-2"></div>
+<div class="col-md-8">
+<center><h1>Marks Sheet</h1></center><br>
+<table class="table table-hover">
+<thead>
+<tr>
+<th>Subject</th>
+<th>Marks</th>
+<th>Teacher</th>
+</tr>
+</thead>
+
+<tbody>
+<% @marks.each do |mark| %>
+<tr>
+<td><%= mark.teacher.subject %></td>
+<td><%= mark.marks %></td>
+<td><%= mark.teacher.name %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+</div>
+
+<br>
+</div>
+
+
+
+<% else %>
+<ul class = "three" style="padding: 16px;">
+
+<center>
+<div class="btn-group " >
+<%= link_to '<button type="button" class="btn btn-info btn-lg">I am a Student</button>'.html_safe, new_student_session_path %>
+<%= link_to '<button type="button" class="btn btn-info btn-lg">I am a Teacher</button>'.html_safe, new_teacher_session_path %>
+</div>
+</center>
+</ul>
+<% end %>
+</div>

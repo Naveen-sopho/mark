@@ -1,0 +1,17 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      	<% if current_teacher.present? %>
+      	    <ul class="nav navbar-nav navbar-right">
+                <li><%= link_to 'Log Out',destroy_teacher_session_path, method: :delete %></li>
+      	    </ul>    
+        <% elsif current_student.present? %>
+            <ul class="nav navbar-nav navbar-right">
+                <li><%= link_to 'Log Out',destroy_student_session_path, method: :delete %></li>
+            </ul>     
+        <% else %>    
+            <ul class="nav navbar-nav">
+                <li><h3> <%= link_to'Home', root_path %></h3></li>
+            </ul>
+        <% end %>     
+    </div>
+</nav>

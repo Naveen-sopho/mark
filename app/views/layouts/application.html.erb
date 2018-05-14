@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grades</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+     <%= yield %>
+      <div id= "notice_wrapper"
+      style="
+      padding: 10px;">
+    <% if notice %>
+  	<p class="notice" style="
+    position:  absolute;
+    bottom: 0;
+    right: 0;
+    background: rgba(214,233,198,1);
+    padding: 18px;
+    color: green;
+"><%= notice %></p>
+  
+    <% elsif alert %>
+ 
+    <p class = "alert" style="
+    position:  absolute;
+    bottom: 0;
+    right: 0;
+    background: rgba(243,223,222,1);
+    padding: 18px;
+    color: red;
+"> <%= alert %></p>
+      <%end%>
+    </div>
+<script >
+  $(document).ready(function(){
+    
+    setTimeout(function(){
+      $('#notice_wrapper').fadeOut("slow",function() {
+        $(this).remove();
+      })
+    },3000);
+  });
+</script>
+   
+  </body>
+</html>
