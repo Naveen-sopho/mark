@@ -65,7 +65,10 @@ class MarksController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def import
+    Mark.import(params[:file])
+    redirect_to marks_path, notice: "Marks Added Successfully"
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_mark

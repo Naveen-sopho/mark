@@ -1,7 +1,8 @@
 <% if current_teacher.present? %>
 
-
+<div class="logout" style = "padding: 10px;">
 <%= link_to 'Log Out',destroy_teacher_session_path,method: :delete , class: "btn btn-danger"%>
+</div>
 <%if false %> render 'layouts/nav'<%end %>
 <div class="container">
 <h2>Welcome <%= current_teacher.name %></h2>
@@ -33,7 +34,17 @@
 </table>
 
 <br>
-<%= link_to 'Add Mark', new_mark_path , class: "btn btn-primary" %>
+<center>
+<%= link_to 'Add Mark', new_mark_path , class: "btn btn-primary"%>
+</center>
+<br>
+<h3>Import Marks</h3>
+<%= form_tag import_marks_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <br />
+  <%= submit_tag "Upload marks" %>
+<% end %>
+
 </div>
 </div>
 

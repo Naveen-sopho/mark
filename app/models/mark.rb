@@ -4,6 +4,11 @@ class Mark < ApplicationRecord
   validates :student_id, uniqueness: { scope: :teacher_id}
   validates :marks, numericality: true
   validate :marks_limit
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      Mark.create! row.to_hash
+    end
+  end
   def marks_limit
   	if self.marks.nil?
   		errors.add(:marks, "cannot be blank")
