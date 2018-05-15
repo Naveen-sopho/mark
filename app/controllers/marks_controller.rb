@@ -66,8 +66,12 @@ class MarksController < ApplicationController
     end
   end
   def import
-    Mark.import(params[:file])
+    if params[:file].nil?
+    redirect_to marks_path, alert: "CSV document not present."
+    else
+    Mark.import(params[:file],current_teacher)
     redirect_to marks_path, notice: "Marks Added Successfully"
+    end
   end
   private
     # Use callbacks to share common setup or constraints between actions.

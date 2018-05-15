@@ -4,9 +4,12 @@ class Mark < ApplicationRecord
   validates :student_id, uniqueness: { scope: :teacher_id}
   validates :marks, numericality: true
   validate :marks_limit
-  def self.import(file)
+  def self.import(file,current_teacher)
     CSV.foreach(file.path, headers: true) do |row|
-      Mark.create! row.to_hash
+      mark = find_by_id(row["id"]) || new
+      mark.attributes = row.to_hash
+      mark.teacher_id = current_teacher.id
+      mark.save!
     end
   end
   def marks_limit
