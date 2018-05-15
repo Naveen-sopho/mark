@@ -26,7 +26,7 @@
 <td><%= mark.student.name %></td>
 <td><%= mark.marks %></td>
 <td><%= link_to 'Show', mark %></td>
-<td><%= link_to 'Edit', edit_mark_path(mark) %></td>
+<td><%= link_to '', edit_mark_path(mark), class: "glyphicon glyphicon-edit" %></td>
 <td><%= link_to '', mark, method: :delete, class: "glyphicon glyphicon-trash", data: { confirm: 'Are you sure?' } %></td>
 </tr>
 <% end %>

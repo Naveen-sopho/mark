@@ -9,6 +9,11 @@ class Mark < ApplicationRecord
       mark = find_by_id(row["id"]) || new
       mark.attributes = row.to_hash
       mark.teacher_id = current_teacher.id
+      checking = new
+      checking = current_teacher.marks
+      if checking.exists?(student_id: mark.student_id)
+        next
+      end
       mark.save!
     end
   end
