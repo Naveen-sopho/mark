@@ -42,7 +42,7 @@
 <%= form_tag import_marks_path, multipart: true do %>
   <%= file_field_tag :file %>
   <br />
-  <%= submit_tag "Upload marks" %>
+  <%= submit_tag "Upload marks", class: "btn btn-primary" %>
 <% end %>
 
 </div>
